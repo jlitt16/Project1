@@ -49,12 +49,30 @@ mySort(getData("P1DataA.csv"),"Email")
 def classSizes(data):
 # Create a histogram
 # Input: list of dictionaries
+	list_tot = []
+	fresh_total = 0
+	soph_total = 0
+	junior_total = 0
+	senior_total = 0
+	for info in data:
+		if info["Class"] == "Freshman":
+			fresh_total+= 1
+		elif info["Class"] == "Sophomore":
+			soph_total += 1
+		elif info["Class"] == "Junior":
+			junior_total += 1
+		else:
+			senior_total +=1
+	list_tot.append(('Freshman', fresh_total))
+	list_tot.append(('Sophomore', soph_total))
+	list_tot.append(('Junior', junior_total))
+	list_tot.append(('Senior', senior_total))
+	return sorted(list_tot, key = lambda k: k[1], reverse = True)
 # Output: Return a list of tuples sorted by the number of students in that class in
 # descending order
 # [('Senior', 26), ('Junior', 25), ('Freshman', 21), ('Sophomore', 18)]
-
 	pass
-
+classSizes(getData("P1DataA.csv"))
 
 def findMonth(a):
 # Find the most common birth month form this data
