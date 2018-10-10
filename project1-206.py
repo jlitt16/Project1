@@ -6,11 +6,28 @@ from datetime import date
 
 def getData(file):
 # get a list of dictionary objects from the file
-#Input: file name
+#Input: file name jdfdkjfdkjfdkjfdk
+	inFile = open(file,'r')
+	top_line = inFile.readline()
+	info_lines = inFile.readlines()
+	top_line_list = top_line.split(",")
+	new_list = []
+	for x in info_lines[0:]:
+		diction = {}
+		split = x.split(",")
+		diction[top_line_list[0]]= split[0]
+		diction[top_line_list[1]]= split[1]
+		diction[top_line_list[2]]= split[2]
+		diction[top_line_list[3]]= split[3]
+		diction[top_line_list[4].strip()]= split[4].strip()
+		if diction not in new_list:
+			new_list.append(diction)
+	return new_list
 #Ouput: return a list of dictionary objects where
 #the keys are from the first row in the data. and the values are each of the other rows
 
 	pass
+getData('P1DataA.csv')
 
 def mySort(data,col):
 # Sort based on key/column
