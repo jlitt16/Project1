@@ -6,7 +6,7 @@ from datetime import date
 
 def getData(file):
 # get a list of dictionary objects from the file
-#Input: file name jdfdkjfdkjfdkjfdk
+#Input: file name
 	inFile = open(file,'r')
 	top_line = inFile.readline()
 	info_lines = inFile.readlines()
@@ -32,11 +32,20 @@ getData('P1DataA.csv')
 def mySort(data,col):
 # Sort based on key/column
 #Input: list of dictionaries and col (key) to sort on
+	x = sorted(data, key = lambda k: k[str(col)])
+	organized_list = []
+	for name in x:
+		first = name["First"]
+		second = name["Last"]
+		organized_list.append(first + " " + second)
+	return organized_list[0]
 #Output: Return the first item in the sorted list as a string of just: firstName lastName
 
 	pass
 
-
+mySort(getData("P1DataA.csv"),"First")
+mySort(getData("P1DataA.csv"),"Last")
+mySort(getData("P1DataA.csv"),"Email")
 def classSizes(data):
 # Create a histogram
 # Input: list of dictionaries
