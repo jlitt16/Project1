@@ -12,6 +12,7 @@ def getData(file):
 	info_lines = inFile.readlines()
 	top_line_list = top_line.split(",")
 	new_list = []
+	inFile.close()
 	for x in info_lines[0:]:
 		diction = {}
 		split = x.split(",")
@@ -46,6 +47,7 @@ def mySort(data,col):
 mySort(getData("P1DataA.csv"),"First")
 mySort(getData("P1DataA.csv"),"Last")
 mySort(getData("P1DataA.csv"),"Email")
+
 def classSizes(data):
 # Create a histogram
 # Input: list of dictionaries
@@ -77,19 +79,39 @@ classSizes(getData("P1DataA.csv"))
 def findMonth(a):
 # Find the most common birth month form this data
 # Input: list of dictionaries
+	birth_list = []
+	most_birthdays = 0
+	birth_dict = {}
+	for info in a:
+		x = info["DOB"].split("/")
+		birth_months = x[0]
+		if birth_months not in birth_dict:
+			birth_dict[birth_months] = 1
+		else:
+			birth_dict[birth_months]+=1
+	sorted_guy = sorted(birth_dict.items(), key = lambda k: k[1], reverse = True)
+	return(int(sorted_guy[0][0]))
+			# 	x = most_birthdays
 # Output: Return the month (1-12) that had the most births in the data
 
 	pass
-
+findMonth(getData("P1DataA.csv"))
 def mySortPrint(a,col,fileName):
 #Similar to mySort, but instead of returning single
 #Student, the sorted data is saved to a csv file.
 # as fist,last,email
 #Input: list of dictionaries, col (key) to sort by and output file name
+	outFile = open(str(fileName),"w")
+	x = sorted(a, key = lambda k: k[str(col)])
+	for name in x:
+		first = name["First"]
+		second = name["Last"]
+		email = name["Email"]
+		outFile.write(first + "," + second + "," + email + "\n")
+	outFile.close()
 #Output: No return value, but the file is written
-
 	pass
-
+mySortPrint(getData("P1DataA.csv"),"First","MyOutfile.csv")
 def findAge(a):
 # def findAge(a):
 # Input: list of dictionaries
