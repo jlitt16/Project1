@@ -26,10 +26,7 @@ def getData(file):
 	return new_list
 #Ouput: return a list of dictionary objects where
 #the keys are from the first row in the data. and the values are each of the other rows
-
 	pass
-getData('P1DataA.csv')
-
 def mySort(data,col):
 # Sort based on key/column
 #Input: list of dictionaries and col (key) to sort on
@@ -41,13 +38,7 @@ def mySort(data,col):
 		organized_list.append(first + " " + second)
 	return organized_list[0]
 #Output: Return the first item in the sorted list as a string of just: firstName lastName
-
 	pass
-
-mySort(getData("P1DataA.csv"),"First")
-mySort(getData("P1DataA.csv"),"Last")
-mySort(getData("P1DataA.csv"),"Email")
-
 def classSizes(data):
 # Create a histogram
 # Input: list of dictionaries
@@ -74,8 +65,6 @@ def classSizes(data):
 # descending order
 # [('Senior', 26), ('Junior', 25), ('Freshman', 21), ('Sophomore', 18)]
 	pass
-classSizes(getData("P1DataA.csv"))
-
 def findMonth(a):
 # Find the most common birth month form this data
 # Input: list of dictionaries
@@ -95,7 +84,6 @@ def findMonth(a):
 # Output: Return the month (1-12) that had the most births in the data
 
 	pass
-findMonth(getData("P1DataA.csv"))
 def mySortPrint(a,col,fileName):
 #Similar to mySort, but instead of returning single
 #Student, the sorted data is saved to a csv file.
@@ -111,16 +99,24 @@ def mySortPrint(a,col,fileName):
 	outFile.close()
 #Output: No return value, but the file is written
 	pass
-mySortPrint(getData("P1DataA.csv"),"First","MyOutfile.csv")
 def findAge(a):
 # def findAge(a):
 # Input: list of dictionaries
+	current_year = int(2018)
+	total_ages = 0
+	num_of_people = 0
+	for x in a:
+		num_of_people+=1
+		dob = x["DOB"]
+		dob_split = dob.split('/')
+		dob_year= dob_split[2]
+		age = int(current_year - int(dob_year))
+		total_ages+= age
+	return(int(total_ages/num_of_people))
 # Output: Return the average age of the students and round that age to the nearest
 # integer.  You will need to work with the DOB and the current date to find the current
 # age in years.
-
 	pass
-
 
 ################################################################
 ## DO NOT MODIFY ANY CODE BELOW THIS
